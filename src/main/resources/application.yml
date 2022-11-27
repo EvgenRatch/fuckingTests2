@@ -1,0 +1,28 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8091/eureka
+
+spring:
+  application:
+    name: eureka-like-service
+  profiles:
+    active: ${PROFILE:dev}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_SERVER:localhost}:${POSTGRES_PORT:5425}/${POSTGRES_DATABASE:social_network_backend_like_service_postgres_db}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:123}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: create
+    show-sql: true
+  redis:
+    host: ${REDIS_SERVER:localhost}
+    port: ${REDIS_PORT:6379}
+
+feign:
+  circuitbreaker:
+    enabled: true
