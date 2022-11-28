@@ -108,7 +108,7 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                         String.format("Комментарий с commentId %d, userId %d не найден в базе данных", commentId, userId)
                 )));
     }
-
+        // 2
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
