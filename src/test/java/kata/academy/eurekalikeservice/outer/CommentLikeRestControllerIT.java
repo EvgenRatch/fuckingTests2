@@ -124,21 +124,21 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                 )));
     }
 
-    @Test
-    @SneakyThrows
-    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
-    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
-    public void getCommentLikeCount_SuccessfulTest() {
-        long commentId = 2L;
-        String positiveState = String.valueOf(true);
-        int result = 1;
-        doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
-        mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
-                        .param("positive", positiveState)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
-    }
+//    @Test
+//    @SneakyThrows
+//    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
+//    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
+//    public void getCommentLikeCount_SuccessfulTest() {
+//        long commentId = 2L;
+//        String positiveState = String.valueOf(true);
+//        int result = 1;
+//        doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
+//        mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
+//                        .param("positive", positiveState)
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
+//    }
 
 
     @Test
