@@ -125,6 +125,7 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                     .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            status().isOk();
         }
     }
 
