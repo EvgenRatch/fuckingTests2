@@ -135,12 +135,12 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
     public void getCommentLikeCount_SuccessfulTest() throws Exception {
         long commentId = 2L;
         String positive = String.valueOf(true);
-        int result = 1;
+
         doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
         mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
                         .param("positive", positive)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("{\"data\":1}"));
     }
 //    @Test
