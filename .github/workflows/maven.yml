@@ -45,6 +45,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+      - name: Test Reporter
+        uses: dorny/test-reporter@v1.6.0
+
       - name: Build and Run Tests
         run: mvn test --batch-mode
       - name: Publish Test Report
