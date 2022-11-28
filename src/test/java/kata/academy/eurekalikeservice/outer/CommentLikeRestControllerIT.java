@@ -41,11 +41,11 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
     @Autowired
     private ContentServiceFeignClient contentServiceFeignClient;
 
-    @Autowired
-    private CommentLikeRestController commentLikeRestController;
-
-    @MockBean
-    private CommentLikeService commentLikeService;
+//    @Autowired
+//    private CommentLikeRestController commentLikeRestController;
+//
+//    @MockBean
+//    private CommentLikeService commentLikeService;
 
 
     @Test
@@ -144,20 +144,20 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
 //                .andExpect(status().isOk())
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
 //    }
-    @Test
-    void testGetPostLikeCount() throws Exception {
-        when(commentLikeService.countByCommentIdAndPositive((Long) any(), (Boolean) any())).thenReturn(3);
-        when(contentServiceFeignClient.existsByCommentId((Long) any())).thenReturn(true);
-        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
-                123L);
-        MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
-        MockMvcBuilders.standaloneSetup(commentLikeRestController)
-                .build()
-                .perform(requestBuilder)
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
-                .andExpect(MockMvcResultMatchers.content().string("{\"data\":3}"));
-    }
+//    @Test
+//    void testGetPostLikeCount() throws Exception {
+//        when(commentLikeService.countByCommentIdAndPositive((Long) any(), (Boolean) any())).thenReturn(3);
+//        when(contentServiceFeignClient.existsByCommentId((Long) any())).thenReturn(true);
+//        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
+//                123L);
+//        MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
+//        MockMvcBuilders.standaloneSetup(commentLikeRestController)
+//                .build()
+//                .perform(requestBuilder)
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
+//                .andExpect(MockMvcResultMatchers.content().string("{\"data\":3}"));
+//    }
 
 
 }
