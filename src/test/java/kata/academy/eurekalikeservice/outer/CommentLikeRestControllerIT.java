@@ -36,7 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         @MockBean(ContentServiceFeignClient.class)
 })
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {CommentLikeRestController.class})
 public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
 
     @Autowired
