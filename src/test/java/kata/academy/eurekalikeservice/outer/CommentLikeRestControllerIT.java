@@ -2,6 +2,7 @@ package kata.academy.eurekalikeservice.outer;
 
 import kata.academy.eurekalikeservice.SpringSimpleContextTest;
 import kata.academy.eurekalikeservice.feign.ContentServiceFeignClient;
+import lombok.SneakyThrows;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,9 +111,10 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
     }
 
     @Test
+    @SneakyThrows
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
-    public void getCommentLikeCount_SuccessfulTest() throws Exception {
+    public void getCommentLikeCount_SuccessfulTest()  {
         long commentId = 2L;
         String positiveState = String.valueOf(true);
         int result = 1;
