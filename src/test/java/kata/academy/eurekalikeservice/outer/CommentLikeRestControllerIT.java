@@ -146,10 +146,9 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
-    void testGetPostLikeCount() throws Exception {
-
-        when(commentLikeService.countByCommentIdAndPositive((Long) any(), (Boolean) any())).thenReturn(3);
-        when(contentServiceFeignClient.existsByCommentId((Long) any())).thenReturn(true);
+    void testGetCommentLikeCount() throws Exception {
+        long commentId = 2L;
+        doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
         MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
                 123L);
         MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
@@ -158,7 +157,7 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.data",Is.is(3)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(3)));
     }
 
 
