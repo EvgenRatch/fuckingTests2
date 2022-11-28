@@ -129,36 +129,36 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                 )));
     }
 
-    //    @Test
-//    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
-//    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
-//    public void getCommentLikeCount_SuccessfulTest() throws Exception {
-//        long commentId = 2L;
-//        String positive = String.valueOf(true);
-//        int result = 1;
-//        doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
-//        mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
-//                        .param("positive", positive)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
-//    }
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
-    void testGetPostLikeCount() throws Exception {
-        Long commentId = 2L;
-        when(contentServiceFeignClient.existsByCommentId(commentId)).thenReturn(true);
-        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
-                2);
-        MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
-        MockMvcBuilders.standaloneSetup(commentLikeRestController)
-                .build()
-                .perform(requestBuilder)
+    public void getCommentLikeCount_SuccessfulTest() throws Exception {
+        long commentId = 2L;
+        String positive = String.valueOf(true);
+        int result = 1;
+        doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
+        mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
+                        .param("positive", positive)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content().string("{\"data\":1}"));
     }
+//    @Test
+//    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/Before.sql")
+//    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, value = "/scripts/outer/CommentLikeRestController/getCommentLikeCount_SuccessfulTest/After.sql")
+//    void testGetPostLikeCount() throws Exception {
+//        Long commentId = 2L;
+//        when(contentServiceFeignClient.existsByCommentId(commentId)).thenReturn(true);
+//        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
+//                2);
+//        MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
+//        MockMvcBuilders.standaloneSetup(commentLikeRestController)
+//                .build()
+//                .perform(requestBuilder)
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
+//                .andExpect(MockMvcResultMatchers.content().string("{\"data\":1}"));
+//    }
 
 
 }
