@@ -120,7 +120,6 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
         mockMvc.perform(get("/api/v1/likes/comments/{commentId}/count", commentId)
                         .param("positive", positiveState)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(result)));
     }
 
