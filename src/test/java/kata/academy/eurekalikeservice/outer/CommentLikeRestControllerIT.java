@@ -38,8 +38,6 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
     @Autowired
     private ContentServiceFeignClient contentServiceFeignClient;
 
-    @Autowired
-    private CommentLikeService commentLikeService;
 
     @Autowired
     private CommentLikeRestController commentLikeRestController;
@@ -157,8 +155,22 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(3)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data", Is.is(1)));
     }
+
+//    @Test
+//    void testGetCommentLikeCountNEW200() throws Exception {
+//        when(contentServiceFeignClient.existsByCommentId((Long) any())).thenReturn(true);
+//        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
+//                123L);
+//        MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
+//        MockMvcBuilders.standaloneSetup(commentLikeRestController)
+//                .build()
+//                .perform(requestBuilder)
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
+//                .andExpect(MockMvcResultMatchers.content().string("{\"data\":1}"));
+//    }
 
 
 }
