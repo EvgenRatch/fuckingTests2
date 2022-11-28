@@ -150,7 +150,7 @@ public class CommentLikeRestControllerIT extends SpringSimpleContextTest {
         long commentId = 2L;
         doReturn(Boolean.TRUE).when(contentServiceFeignClient).existsByCommentId(commentId);
         MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/v1/likes/comments/{commentId}/count",
-                123L);
+                commentId);
         MockHttpServletRequestBuilder requestBuilder = getResult.param("positive", String.valueOf(true));
         MockMvcBuilders.standaloneSetup(commentLikeRestController)
                 .build()
